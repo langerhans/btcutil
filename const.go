@@ -4,6 +4,8 @@
 
 package btcutil
 
+import "math"
+
 const (
 	// SatoshiPerBitcent is the number of satoshi in one bitcoin cent.
 	SatoshiPerBitcent = 1e6
@@ -12,5 +14,7 @@ const (
 	SatoshiPerBitcoin = 1e8
 
 	// MaxSatoshi is the maximum transaction amount allowed in satoshi.
-	MaxSatoshi = 21e6 * SatoshiPerBitcoin
+	// This is 92bn, which is safe enough. If someone makes a transaction larger
+	// than this we can assume the network is horribly broken
+	MaxSatoshi = math.MaxInt64
 )
